@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,25 @@
   <link rel="stylesheet" href="styles.css">
   <script src="custom.js" defer></script>
 </head>
+
 <body>
   <div class="container">
     <div class="header">
       <h1>Victor's Library!</h1>
+      <button id="add">Add a book</button>
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Some text in the Modal..</p>
+        </div>
+
+      </div>
     </div>
     <div class="library" id="library">
     </div>
   </div>
 </body>
+
 </html>
