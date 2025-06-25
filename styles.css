@@ -33,8 +33,28 @@
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  border: 0px;
+  width: 80%; 
+  max-width: 400px;
+  text-align: left;
+  border-radius: 0.9rem;
+}
+
+.modal-content p {
+  text-align: center;
+}
+.modal-content .modal-title {
+  font-size: large;
+  font-weight: 700;
+}
+
+.modal-content form {
+  display: grid;
+  gap: 5px;
+}
+
+input[type='submit'] {
+  max-width: 100px;
 }
 
 /* The Close Button */
