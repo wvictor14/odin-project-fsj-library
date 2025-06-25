@@ -14,6 +14,20 @@
   text-align: center;
 }
 
+.header h1  {
+  font-family: monospace;
+  font-weight: 100;
+}
+.rowAdd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.total-text {
+  font-family: monospace;
+  font-size: 1rem;
+}
  /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -81,26 +95,40 @@ input[type='submit'] {
 }
 
 .book {
+  display: grid;
+  height: 200px;
+  width: 100;
   margin: 20px;
   padding: 10px;
   border: 0px;
-  background-color: rgb(215, 223, 231);
+  background-color: rgb(227, 208, 208);
   border-radius: 1rem;
   
     /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
+
+  
+  transform: rotate(3deg);
 }
 /* On mouse-over, add a deeper shadow */
 .book:hover {
   box-shadow: 0 16px 24px 0 rgba(0,0,0,0.2);
 }
 
+
 .book .author,
 .book .title {
   text-align: center;
+  align-self: center;
+}
+.book .title {
+  margin: 0 0 0 0;
+  font-weight: 900;
 }
 .book .author {
+  margin-top: 0;
+  font-weight: 1;
   font-style:italic ;
 }
 
@@ -116,3 +144,50 @@ input[type='submit'] {
   text-decoration: none;
   cursor: pointer;
 } 
+
+.last-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.last-row .pages {
+  font-size: 3rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
+}
+
+.last-row button {
+  height: 20px;
+  width: 20px;
+  align-self: center;
+  justify-self: end;
+}
+
+.read,
+.not-read {
+  border: 0;
+  border-radius: 0.9rem;
+}
+.read {
+  background-color: green;
+}
+.not-read {
+  background-color: grey;
+}
+
+.btn {
+  border: 0;
+  height: 35px;
+  border-radius: 0.9rem;
+  padding: 5px 10px;
+  background-color: rgb(190, 123, 190);
+  color: white;
+  font-weight: 100;
+  font-family: monospace
+}
+.btn:hover {
+  cursor:pointer;
+  background-color: rgb(170, 113, 170);
+  box-shadow: 0 5px 5px 0 rgba(0,0,0,0.2);
+}

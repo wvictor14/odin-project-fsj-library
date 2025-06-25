@@ -1,8 +1,9 @@
 // init empty library
 const myLibrary = [];
+var total = 0;
 
 // book constructor
-function Book(title, author) {
+function Book(title, author, npages, read) {
   if (!new.target) {
     throw Error("You must use the 'new' operator to call the constructor");
   }
@@ -10,21 +11,24 @@ function Book(title, author) {
   // take params, create a book then store it in the array
   this.title = title;
   this.author = author;
+  this.npages = npages;
+  this.read = read;
 
   // unique id
   this.id = crypto.randomUUID();
 }
 
-function addBookToLibrary(title, author) {
-  let newBook = new Book(title, author);
+function addBookToLibrary(title, author, npages, read) {
+  let newBook = new Book(title, author, npages, read);
   myLibrary.push(newBook);
+  total += total;
 }
 
 console.log('Initializing library with 2 books...');
-addBookToLibrary('Harry Potter', 'JRR Tolkien');
-addBookToLibrary('The Hobbit', 'JRR Tolkien');
-addBookToLibrary('Old Man and the Sea', 'Hemingway');
-addBookToLibrary('A Game of Thrones', 'George R. R. Martin');
+addBookToLibrary('Harry Potter', 'JRR Tolkien', 360, false);
+addBookToLibrary('The Hobbit', 'JRR Tolkien', 500, false);
+addBookToLibrary('Old Man and the Sea', 'Hemingway', 126, true);
+addBookToLibrary('A Game of Thrones', 'George R. R. Martin', 495, true);
 console.log(myLibrary);
 
 
@@ -44,16 +48,36 @@ function createBookDiv(book) {
   // book > (title + author)
   let newBookTitle = document.createElement('h2');
   newBookTitle.classList.add('title');
+  newBookTitle.textContent = book.title;
+
   let newBookAuthor = document.createElement('p');
   newBookAuthor.classList.add('author');
-
-  newBookTitle.textContent = book.title;
   newBookAuthor.textContent = book.author;
+
+  // last row 
+  let lastRow = document.createElement('div');
+  lastRow.classList.add('last-row');
+
+  let newBookPages = document.createElement('p');
+  newBookPages.classList.add('pages');
+  newBookPages.textContent = book.npages;
+  lastRow.appendChild(newBookPages);
+
+  
+  let newBookRead = document.createElement('button');
+  console.log(book);
+  if (book.read) {
+    newBookRead.classList.add('read');
+  } else {
+    newBookRead.classList.add('not-read');
+  }
+  lastRow.appendChild(newBookRead);
 
   // add divs together
   newBook.appendChild(span);
   newBook.appendChild(newBookTitle);
   newBook.appendChild(newBookAuthor);
+  newBook.appendChild(lastRow);
 
   // add to library
   divLibrary.appendChild(newBook);
@@ -61,7 +85,7 @@ function createBookDiv(book) {
   // close button
   // event listener for each close button
   span.addEventListener('click', () => {
-    
+
     // get the data-id for the div
     const currentBook = span.parentNode;
     const currentBookDataID = currentBook.getAttribute('data-id');
@@ -73,6 +97,9 @@ function createBookDiv(book) {
 
       // remove from page
       divLibrary.removeChild(currentBook);
+
+      // update total
+      updateTotal();
     }
   });
 
@@ -83,6 +110,21 @@ function displayLibrary() {
   myLibrary.map(function (element) {
     createBookDiv(element)
   });
+
+  // update total
+  updateTotal();
+}
+
+function updateTotal() {
+    // update total
+  const totalBooks = document.querySelector('.total');
+  totalBooks.innerHTML = '';
+  const p = document.createElement('p');
+  p.classList.add('total-text');
+  p.textContent = myLibrary.length + ' Total';
+
+  console.log(totalBooks);
+  totalBooks.appendChild(p);
 }
 
 // initialize a library
@@ -126,5 +168,6 @@ myForm.addEventListener('submit', (event) => {
 
   addBookToLibrary(title, author);
   displayLibrary();
+  updateTotal();
   modal.style.display = "none";
 });
