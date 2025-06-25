@@ -91,7 +91,7 @@ input[type='submit'] {
   margin-left: 15px;
   margin-right: 15px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
 }
 
 .book {
