@@ -165,8 +165,15 @@ myForm.addEventListener('submit', (event) => {
   const formData = new FormData(event.target);
   const title = formData.get('title');
   const author = formData.get('author');
+  const npages = formData.get('npages');
+  var read = formData.get('read');
+  if (read == 'read') {
+    read = true;
+  } else if (read == 'not read') {
+    read = false;
+  }
 
-  addBookToLibrary(title, author);
+  addBookToLibrary(title, author, npages, read);
   displayLibrary();
   updateTotal();
   modal.style.display = "none";
