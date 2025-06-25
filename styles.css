@@ -82,6 +82,7 @@ input[type='submit'] {
 
 .book {
   margin: 20px;
+  padding: 10px;
   border: 0px;
   background-color: rgb(215, 223, 231);
   border-radius: 1rem;
@@ -102,3 +103,16 @@ input[type='submit'] {
 .book .author {
   font-style:italic ;
 }
+
+.book .remove-book {
+  float: right;
+  padding-right: 5px;
+  color: #aaa;
+  font-weight: bold;
+}
+.book .remove-book:hover,
+.book .remove-book:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} 

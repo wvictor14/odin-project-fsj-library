@@ -23,16 +23,23 @@ function addBookToLibrary(title, author) {
 console.log('Initializing library with 2 books...');
 addBookToLibrary('Harry Potter', 'JRR Tolkien');
 addBookToLibrary('The Hobbit', 'JRR Tolkien');
+addBookToLibrary('Old Man and the Sea', 'Hemingway');
+addBookToLibrary('A Game of Thrones', 'George R. R. Martin');
 console.log(myLibrary);
 
 
 // generate cards from books
 const divLibrary = document.getElementById('library');
 function createBookDiv(book) {
-  
+
   // book div
   let newBook = document.createElement('div');
   newBook.classList.add('book');
+  newBook.setAttribute('data-id', book.id);
+
+  let span = document.createElement('span');
+  span.classList.add('remove-book');
+  span.textContent = 'x';
 
   // book > (title + author)
   let newBookTitle = document.createElement('h2');
@@ -44,11 +51,31 @@ function createBookDiv(book) {
   newBookAuthor.textContent = book.author;
 
   // add divs together
+  newBook.appendChild(span);
   newBook.appendChild(newBookTitle);
   newBook.appendChild(newBookAuthor);
 
   // add to library
   divLibrary.appendChild(newBook);
+
+  // close button
+  // event listener for each close button
+  span.addEventListener('click', () => {
+    
+    // get the data-id for the div
+    const currentBook = span.parentNode;
+    const currentBookDataID = currentBook.getAttribute('data-id');
+
+    if (currentBook) {
+      // remove from library array
+      const indexToRemove = myLibrary.findIndex(book => book.id === currentBookDataID);
+      myLibrary.splice(indexToRemove, 1);
+
+      // remove from page
+      divLibrary.removeChild(currentBook);
+    }
+  });
+
 }
 
 function displayLibrary() {
@@ -99,4 +126,5 @@ myForm.addEventListener('submit', (event) => {
 
   addBookToLibrary(title, author);
   displayLibrary();
+  modal.style.display = "none";
 });
